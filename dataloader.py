@@ -24,8 +24,8 @@ class Data:
 			trainset = torchvision.datasets.ImageNet(root=self.path, split='train', transform=train_trans)
 			testset = torchvision.datasets.ImageNet(root=self.path, split='val', transform=test_trans)
 		elif self.dataset == 'tiny':
-			trainset = torchvision.datasets.ImageFolder('/mnt/lustre/glli/code/Contrastive_Learning_Security/dataset/tiny_imagenet/train', train_trans)
-			testset = torchvision.datasets.ImageFolder('/mnt/lustre/glli/code/Contrastive_Learning_Security/dataset/tiny_imagenet/val/images', test_trans)
+			trainset = torchvision.datasets.ImageFolder(self.path+'/train', train_trans)
+			testset = torchvision.datasets.ImageFolder(self.path+'/val/images', test_trans)
 		elif self.dataset == 'place':
 			trainset = torchvision.datasets.Places365(root=self.path, split='train-standard', small=True, download=True, transform=train_trans)
 			testset = torchvision.datasets.Places365(root=self.path, split='val', small=True, download=True, transform=test_trans)
