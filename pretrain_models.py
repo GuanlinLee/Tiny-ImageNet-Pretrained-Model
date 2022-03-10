@@ -82,6 +82,8 @@ parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet',
 					help='model architecture')
 parser.add_argument('--dataset', default='tiny', type=str,
 					help='which dataset used to train')
+parser.add_argument('--path', default='./', type=str,
+					help='path to your dataset')
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
 					help='number of total epochs to run')
 parser.add_argument('-b', '--batch_size', default=128, type=int,
@@ -143,7 +145,7 @@ elif args.arch == 'mobilenet':
 transform_test=transforms.Compose([torchvision.transforms.Resize((64,64)),
 									   transforms.ToTensor(),
 									   ])
-dl = dataloader.Data(args.dataset, '/data')
+dl = dataloader.Data(args.dataset, args.path)
 trainloader, testloader = dl.data_loader(transform_test, transform_test, batch_size)
 def data_aug(image):
 	image = TF.center_crop(image, [int(64.0 * random.uniform(0.95, 1.0)), int(64.0 * random.uniform(0.95, 1.0))])
